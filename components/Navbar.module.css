@@ -1,0 +1,19 @@
+.navbar {
+  background: rgba(130, 127, 127, 0.2);
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.logo {
+  
+}
+
+.title span{
+  font-size: 30px;
+}
+
+.signInButton {}

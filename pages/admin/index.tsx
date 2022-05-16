@@ -4,6 +4,7 @@ import Head from "next/head";
 import { signOut, useSession, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import connectToDatabase from "../../lib/database";
+import Navbar from "../../components/Navbar";
 
 interface AdminProps {
   name: string;
@@ -24,7 +25,12 @@ const AdminPage: NextPage<AdminProps> = (props) => {
     router.replace("/signin");
   }
 
-  return <p>Hello {props.name} </p>;
+  return (
+    <>
+      <Navbar isAuthenticated={status === "authenticated"} sessionData={props}></Navbar>Hello{" "}
+      {props.name}{" "}
+    </>
+  );
 };
 
 export default AdminPage;

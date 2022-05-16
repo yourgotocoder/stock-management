@@ -6,7 +6,8 @@ import connectToDatabase from "../../../lib/database";
 export default NextAuth({
   secret: process.env.SECRET,
   pages: {
-    signIn: "/signin"
+    signIn: "/signin",
+    error: "/"
   },
   session: {
     strategy: "jwt",
