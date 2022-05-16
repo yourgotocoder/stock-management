@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
-import Link from "next/link";
 import Head from "next/head";
-import { getCsrfToken, useSession } from "next-auth/react";
+import {  useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import Navbar from "../components/Navbar";
 
@@ -19,7 +18,6 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <Navbar isAuthenticated={status === "authenticated" ? true : false}/>
       Default state
     </>
   );

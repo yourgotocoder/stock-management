@@ -9,17 +9,10 @@ import Tooltip from "@mui/material/Tooltip";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-
-
-type NavbarProps = {
-  isAuthenticated: boolean;
-  sessionData?: {
-    name: string;
-    _id: string;
-    emailId: string;
-    empCode: string;
-  };
-};
+import { Offline, Online } from "react-detect-offline";
+import CompassCalibrationIcon from "@mui/icons-material/CompassCalibration";
+import SignalWifiConnectedNoInternet4Icon from "@mui/icons-material/SignalWifiConnectedNoInternet4";
+import Link from "next/link";
 
 const style = {
   position: "absolute" as "absolute",
@@ -33,15 +26,10 @@ const style = {
   p: 4,
 };
 
-const Navbar: NextComponentType<{}, {}, NavbarProps> = ({
-  isAuthenticated,
-  sessionData,
-}) => {
+const Navbar: NextComponentType = (props) => {
   const [signInVisible, setSignInVisible] = useState(false);
 
   const { data: session, status } = useSession();
-
-  console.log(session);
 
   const handleSignOut = () => {
     signOut();
@@ -51,29 +39,48 @@ const Navbar: NextComponentType<{}, {}, NavbarProps> = ({
     setSignInVisible((prevState) => !prevState);
   };
 
-  if (isAuthenticated) {
-    return (
-      <div>
-        Nav {sessionData?.name} <button onClick={handleSignOut}>Signout</button>
-      </div>
-    );
-  }
+  console.log(session);
 
   return (
     <div className={classes.navbar}>
       <div className={classes.title}>
-        <Tooltip title="Go to Home" placement="right">
-          <HomeIcon sx={{ fontSize: 40 }}></HomeIcon>
-        </Tooltip>
-        <div className={classes.logo}>
-          <img src="" alt="" />
+        <div className={classes["title-items"]}>
+          <Link href="/">
+            <Tooltip title="Homepage" placement="right">
+              <a>
+                <HomeIcon sx={{ fontSize: 40 }}></HomeIcon>
+              </a>
+            </Tooltip>
+          </Link>
+        </div>
+        <div className={classes["title-items"]}>
+          <Tooltip title="Internet Active" placement="right">
+            <div>
+              <Online>
+                <CompassCalibrationIcon />
+              </Online>
+            </div>
+          </Tooltip>
+          <Tooltip title="Internet Connection Lost" placement="right">
+            <div>
+              <Offline>
+                <SignalWifiConnectedNoInternet4Icon />
+              </Offline>
+            </div>
+          </Tooltip>
         </div>
       </div>
       <div className={classes.siginInButto}>
         {!signInVisible && (
-          <Button onClick={showSignInForm} variant="contained">
-            Sign In
-          </Button>
+          <Tooltip title="Click to get email link" placement="left">
+            {status !== "authenticated" ? (
+              <Button onClick={showSignInForm} variant="contained">
+                Sign In
+              </Button>
+            ) : (
+              <Button onClick={handleSignOut} variant="contained">Signout</Button>
+            )}
+          </Tooltip>
         )}
         {signInVisible && (
           <Modal

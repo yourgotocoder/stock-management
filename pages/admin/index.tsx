@@ -27,7 +27,6 @@ const AdminPage: NextPage<AdminProps> = (props) => {
 
   return (
     <>
-      <Navbar isAuthenticated={status === "authenticated"} sessionData={props}></Navbar>Hello{" "}
       {props.name}{" "}
     </>
   );

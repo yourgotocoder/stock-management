@@ -12,21 +12,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #1565C0;
+  color: #1565c0;
+}
+
+.title-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 3rem;
   height: 3rem;
 }
 
-.title:hover {
-  color: #145cae;
+.title-items:hover {
+  color: #149fae;
+  cursor: pointer;
   border-radius: 50%;
   background-color: rgba(148, 147, 147, 0.3);
 }
 
-.logo {
-  
+.title:hover {
 }
 
+.logo {
+}
 
-
-.signInButton {}
+.signInButton {
+}

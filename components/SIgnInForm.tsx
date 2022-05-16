@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { signIn, SignInResponse } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
