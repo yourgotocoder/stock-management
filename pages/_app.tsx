@@ -9,7 +9,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     <SessionProvider session={session}>
       <Head>
         <title>Stock Management App | CSE | Designed By Sudarshan Rai</title>
-        <meta charSet="UTF-8"/>
+        
+
+        <meta charSet="UTF-8" />
       </Head>
       <Component {...pageProps} />
     </SessionProvider>

@@ -8,12 +8,25 @@
   padding: 0 2rem;
 }
 
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #1565C0;
+  width: 3rem;
+  height: 3rem;
+}
+
+.title:hover {
+  color: #145cae;
+  border-radius: 50%;
+  background-color: rgba(148, 147, 147, 0.3);
+}
+
 .logo {
   
 }
 
-.title span{
-  font-size: 30px;
-}
+
 
 .signInButton {}

@@ -1,0 +1,23 @@
+.verifying-email {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: large;
+}
+
+.verifying-email-progress {
+  text-align: center;
+}
+
+.verification-failed {
+  color: rgb(188, 22, 22);
+  font-size: x-large;
+  text-align: center;
+}
+
+.verification-success {
+  font-size: large;
+  color: rgb(21, 24, 21);
+}

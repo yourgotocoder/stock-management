@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { signIn, SignInResponse } from "next-auth/react";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+import classes from "./SignInForm.module.css";
 
 type SingInData = {
   error: string;
@@ -11,11 +15,17 @@ type SingInData = {
 const SignInForm = () => {
   const [emailInputValue, setEmailInputValue] = useState("");
 
+  const [emailInputError, setEmailInputError] = useState("");
+
   const [loginState, setLoginState] = useState<SingInData>();
 
   const [logginIn, setLogginIn] = useState(false);
 
   const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (emailInputValue.trim().length === 0) {
+      setEmailInputError("Enter Email");
+      return;
+    }
     setLogginIn(true);
     const loginData = await signIn("email", {
       email: emailInputValue,
@@ -29,27 +39,35 @@ const SignInForm = () => {
 
   const resetLoginState = () => {
     setLoginState(undefined);
-    setEmailInputValue('');
-  }
+    setEmailInputValue("");
+  };
 
   let emailForm;
 
   if (!logginIn) {
     emailForm = (
       <>
-        <label>
-          Email address
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={emailInputValue}
-            onChange={(event) => setEmailInputValue(event.target.value)}
-          />
-        </label>
-        <button type="button" onClick={handleSubmit}>
-          Sign in with Email
-        </button>
+        <TextField
+          error={emailInputError === "Enter Email"}
+          fullWidth
+          type="email"
+          id="email"
+          style={{ width: "100" }}
+          name="email"
+          label={
+            emailInputError === "Enter Email"
+              ? "Field cannot be empty"
+              : "Email"
+          }
+          onFocus={() => setEmailInputError("")}
+          value={emailInputValue}
+          onChange={(event) => setEmailInputValue(event.target.value)}
+          required
+        />
+
+        <Button onClick={handleSubmit} variant="outlined">
+          Get sign-in link
+        </Button>
       </>
     );
   }
@@ -57,28 +75,36 @@ const SignInForm = () => {
   if (logginIn && !loginState) {
     emailForm = (
       <>
-        Verifying {emailInputValue}
+        <div className={classes["verifying-email"]}>
+          <div>
+            Verifying {" "}
+            <span style={{ fontWeight: "bolder" }}>{emailInputValue}</span>
+          </div>
+          <div className={classes["verifying-email-progress"]}>
+            <CircularProgress/>
+          </div>
+        </div>
       </>
-    )
+    );
   }
 
   if (!logginIn && loginState?.url) {
     emailForm = (
-      <>
-        An email link has been sent to {emailInputValue}, please login using that link
-      </>
-    )
+      <div className={classes["verification-success"]}>
+        A sign-in link has been sent to {emailInputValue}, please login using
+        that link
+      </div>
+    );
   }
 
   if (!logginIn && loginState?.error) {
     emailForm = (
-      <>
-        {loginState.error} <button onClick={resetLoginState}>Enter a valid email</button>
-      </>
-    )
-
+      <div className={classes["verification-failed"]}>
+        <div>{loginState.error}</div>
+        <Button onClick={resetLoginState} variant="outlined">Enter a valid email</Button>
+      </div>
+    );
   }
-
 
   return <div>{emailForm}</div>;
 };
