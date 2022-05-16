@@ -27,6 +27,7 @@ const style = {
 };
 
 const Navbar: NextComponentType = (props) => {
+
   const [signInVisible, setSignInVisible] = useState(false);
 
   const { data: session, status } = useSession();

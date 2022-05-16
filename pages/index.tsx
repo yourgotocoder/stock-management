@@ -16,6 +16,10 @@ const Home: NextPage = () => {
     router.replace("/admin");
   }
 
+  if (router.query.error) {
+    return <>Link already used to login, please request for another link</>
+  }
+
   return (
     <>
       Default state
