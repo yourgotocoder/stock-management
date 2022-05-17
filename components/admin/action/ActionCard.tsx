@@ -3,6 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
+import GroupIcon from "@mui/icons-material/Group";
 import classes from "./ActionCard.module.css";
 import MainContext from "../../../store/main-context";
 
@@ -28,6 +29,12 @@ const ActionCard = (props: Props) => {
                         onClick={() => mainCtx.setCurrentAction("add-user")}
                     >
                         <PersonAddAltIcon /> <span>Add new member</span>
+                    </div>
+                    <div
+                        className={classes["action-list"]}
+                        onClick={() => mainCtx.setCurrentAction("view-user")}
+                    >
+                        <GroupIcon /> <span>View members</span>
                     </div>
                 </Typography>
             </CardContent>

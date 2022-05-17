@@ -13,6 +13,7 @@ export function MainContextProvider(props: Props) {
     const [currentComponent, setCurrentComponent] = useState("");
 
     const setCurrentMainCard = (componentClicked: string) => {
+        console.log(currentComponent);
         setCurrentComponent(componentClicked);
     };
 

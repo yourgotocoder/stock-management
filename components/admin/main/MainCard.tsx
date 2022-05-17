@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Card from "@mui/material/Card";
 import MainContext from "../../../store/main-context";
 import CreateNewUser from "../users/CreateNewUser";
+import UsersList from "../users/UsersList";
 
 type Props = {};
 
@@ -10,12 +11,18 @@ const MainCard = (props: Props) => {
 
     let cardContent;
 
+    console.log(mainCtx.currentAction);
+
     switch (mainCtx.currentAction) {
         case "":
-            cardContent = <p>Default</p>;
+            cardContent = <div>Default</div>;
             break;
         case "add-user":
             cardContent = <CreateNewUser />;
+            break;
+        case "view-user":
+            cardContent = <UsersList />;
+            break;
     }
 
     return (
