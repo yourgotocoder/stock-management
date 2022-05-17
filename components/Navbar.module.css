@@ -1,33 +1,33 @@
 .navbar {
-  background: rgba(130, 127, 127, 0.2);
-  width: 100%;
-  height: 5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 2rem;
+    background: rgba(130, 127, 127, 0.2);
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
 }
 
 .title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #1565c0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #1565c0;
 }
 
 .title-items {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 3rem;
-  height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
 }
 
 .title-items:hover {
-  color: #149fae;
-  cursor: pointer;
-  border-radius: 50%;
-  background-color: rgba(148, 147, 147, 0.3);
+    color: #149fae;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: rgba(148, 147, 147, 0.3);
 }
 
 .title:hover {
