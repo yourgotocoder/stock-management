@@ -1,17 +1,19 @@
 import React from "react";
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 
 type Props = {
-  children?: React.ReactNode;
+    children?: React.ReactNode;
 };
 
 const Layout = (props: Props) => {
-  return (
-    <>
-      <Navbar />
-      {props.children}
-    </>
-  );
+    return (
+        <>
+            <Navbar />
+            {props.children}
+            <Footer />
+        </>
+    );
 };
 
 export default Layout;

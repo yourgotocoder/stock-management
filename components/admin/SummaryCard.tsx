@@ -6,26 +6,25 @@ import Typography from "@mui/material/Typography";
 
 type Props = {};
 
-const UserProfile = (props: Props) => {
+const SummaryCard = (props: Props) => {
     return (
-        <Card sx={{ minWidth: 275, maxHeight: "98%" }}>
+        <Card sx={{ minWidth: 275, minHeight: "100%", maxHeight: "100%" }}>
             <CardContent>
                 <Typography
                     sx={{ fontSize: 14 }}
                     color="text.secondary"
                     gutterBottom
                 >
-                    Signed In as
+                    Summary Card
                 </Typography>
                 <Typography variant="h5" component="div"></Typography>
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    User
+                    Some Actions
                 </Typography>
-                <Typography variant="body2">Role</Typography>
             </CardContent>
             <CardActions></CardActions>
         </Card>
     );
 };
 
-export default UserProfile;
+export default SummaryCard;
