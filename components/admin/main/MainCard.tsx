@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import Card from "@mui/material/Card";
+import MainContext from "../../../store/main-context";
+import CreateNewUser from "../users/CreateNewUser";
 
 type Props = {};
 
 const MainCard = (props: Props) => {
+    const mainCtx = useContext(MainContext);
+
+    let cardContent;
+
+    switch (mainCtx.currentAction) {
+        case "":
+            cardContent = <p>Default</p>;
+            break;
+        case "add-user":
+            cardContent = <CreateNewUser />;
+    }
+
     return (
         <Card
             sx={{
@@ -13,7 +27,7 @@ const MainCard = (props: Props) => {
                 padding: "1rem",
             }}
         >
-            some context
+            {cardContent}
         </Card>
     );
 };

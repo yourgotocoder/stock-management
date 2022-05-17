@@ -1,0 +1,15 @@
+.action-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.action-list:hover {
+    background: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+
+    font-weight: bold;
+    color: #1565c0;
+}

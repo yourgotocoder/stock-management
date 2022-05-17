@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
+import classes from "./ActionCard.module.css";
+import MainContext from "../../../store/main-context";
 
 type Props = {};
 
 const ActionCard = (props: Props) => {
+    const mainCtx = useContext(MainContext);
+
     return (
         <Card sx={{ minWidth: 275, minHeight: "80%", maxHeight: "98%" }}>
             <CardContent>
@@ -19,10 +23,14 @@ const ActionCard = (props: Props) => {
                 </Typography>
                 <Typography variant="h5" component="div"></Typography>
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    Some Actions
+                    <div
+                        className={classes["action-list"]}
+                        onClick={() => mainCtx.setCurrentAction("add-user")}
+                    >
+                        <PersonAddAltIcon /> <span>Add new member</span>
+                    </div>
                 </Typography>
             </CardContent>
-            <CardActions></CardActions>
         </Card>
     );
 };
