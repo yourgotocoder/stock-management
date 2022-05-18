@@ -11,8 +11,6 @@ const MainCard = (props: Props) => {
 
     let cardContent;
 
-    console.log(mainCtx.currentAction);
-
     switch (mainCtx.currentAction) {
         case "":
             cardContent = <div>Default</div>;

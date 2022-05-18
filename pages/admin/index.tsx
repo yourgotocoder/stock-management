@@ -19,7 +19,7 @@ const AdminPage: NextPage<AdminProps> = (props) => {
     const router = useRouter();
 
     if (status === "loading") {
-        return <p>Loading...</p>;
+        return <div>Loading...</div>;
     }
 
     if (status === "unauthenticated") {

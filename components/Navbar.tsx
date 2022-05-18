@@ -9,9 +9,6 @@ import Tooltip from "@mui/material/Tooltip";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Offline, Online } from "react-detect-offline";
-import CompassCalibrationIcon from "@mui/icons-material/CompassCalibration";
-import SignalWifiConnectedNoInternet4Icon from "@mui/icons-material/SignalWifiConnectedNoInternet4";
 import Link from "next/link";
 import MainContext from "../store/main-context";
 
@@ -42,8 +39,6 @@ const Navbar: NextComponentType = (props) => {
         setSignInVisible((prevState) => !prevState);
     };
 
-    console.log(session);
-
     return (
         <div className={classes.navbar}>
             <div className={classes.title}>
@@ -55,22 +50,6 @@ const Navbar: NextComponentType = (props) => {
                             </a>
                         </Tooltip>
                     </div>
-                </div>
-                <div className={classes["title-items"]}>
-                    <Tooltip title="Internet Active" placement="right">
-                        <div>
-                            <Online>
-                                <CompassCalibrationIcon />
-                            </Online>
-                        </div>
-                    </Tooltip>
-                    <Tooltip title="Internet Connection Lost" placement="right">
-                        <div>
-                            <Offline>
-                                <SignalWifiConnectedNoInternet4Icon />
-                            </Offline>
-                        </div>
-                    </Tooltip>
                 </div>
             </div>
             <div className={classes.siginInButto}>

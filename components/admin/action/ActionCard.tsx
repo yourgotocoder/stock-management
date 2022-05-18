@@ -24,18 +24,18 @@ const ActionCard = (props: Props) => {
                 </Typography>
                 <Typography variant="h5" component="div"></Typography>
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    <div
+                    <span
                         className={classes["action-list"]}
                         onClick={() => mainCtx.setCurrentAction("add-user")}
                     >
                         <PersonAddAltIcon /> <span>Add new member</span>
-                    </div>
-                    <div
+                    </span>
+                    <span
                         className={classes["action-list"]}
                         onClick={() => mainCtx.setCurrentAction("view-user")}
                     >
                         <GroupIcon /> <span>View members</span>
-                    </div>
+                    </span>
                 </Typography>
             </CardContent>
         </Card>
