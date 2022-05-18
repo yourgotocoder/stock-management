@@ -16,6 +16,7 @@ type NewUser = {
     name: string;
     empCode: string;
     emailId: string;
+    role: string;
 };
 
 export default async function handler(
@@ -24,35 +25,45 @@ export default async function handler(
 ) {
     if (req.method === "POST") {
         const session = await getSession({ req });
-
-        console.log(session);
+        if (!session) {
+            res.status(401).json({
+                error: true,
+                message:
+                    "Unauthorized (You dont't have the proper permissions for this action)",
+            });
+            return;
+        }
+        const email = session.user?.email;
+        const client = await connectToDatabase();
+        const db = client.db();
+        const collection = db.collection("admin");
+        const foundUser = await collection.findOne({ emailId: email });
+        if (foundUser && foundUser.role === "admin") {
+            const { name, emailId, empCode, role }: NewUser = req.body;
+            if (
+                !name ||
+                name.trim().length === 0 ||
+                !emailId ||
+                !emailId.includes("@smit.smu.edu.in") ||
+                !empCode ||
+                !role ||
+                role.trim().length === 0
+            ) {
+                res.status(422).json({
+                    error: true,
+                    message: "Failed to create a user",
+                });
+                return;
+            }
+            const newUser = await collection.insertOne({
+                emailId,
+                name,
+                empCode,
+                role,
+            });
+            res.status(200).json({ message: "Created User" });
+            return;
+        }
+        res.status(500).json({ message: "Something went wrong" });
     }
-
-    // const { name, emailId, empCode }: NewUser = req.body;
-
-    // if (
-    //   !name ||
-    //   name.trim().length === 0 ||
-    //   !emailId ||
-    //   !emailId.includes("@smit.smu.edu.in") ||
-    //   !empCode
-    // ) {
-    //   res.status(422).json({ error: true, message: "Failed to create a user" });
-    //   return;
-    // }
-
-    // const client = await connectToDatabase();
-
-    // const db = client.db();
-    // const collections = db.collection("admin");
-
-    // const newUser = await collections.insertOne({
-    //   emailId,
-    //   name,
-    //   empCode
-    // });
-
-    // console.log(newUser);
-
-    res.status(200).json({ message: "Created User" });
 }

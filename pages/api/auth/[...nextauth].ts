@@ -28,12 +28,6 @@ export default NextAuth({
                 return false;
             }
         },
-        async jwt({ token, user, account, profile, isNewUser }) {
-            return Promise.resolve(token);
-        },
-        async session({ session, token, user }) {
-            return session;
-        },
     },
     adapter: MongoDBAdapter(connectToDatabase()),
     providers: [
