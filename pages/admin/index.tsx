@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import connectToDatabase from "../../lib/database";
 import Navbar from "../../components/Navbar";
 import AdminHome from "../../components/admin/AdminHome";
+import Loading from "../../components/UI/Loading";
 
 interface AdminProps {
     name: string;
@@ -19,7 +20,7 @@ const AdminPage: NextPage<AdminProps> = (props) => {
     const router = useRouter();
 
     if (status === "loading") {
-        return <div>Loading...</div>;
+        return <Loading></Loading>;
     }
 
     if (status === "unauthenticated") {

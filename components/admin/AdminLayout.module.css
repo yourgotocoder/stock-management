@@ -2,7 +2,6 @@
     display: grid;
     width: 100vw;
     grid-template-columns: 1fr 4fr 1fr;
-    height: 85vh;
     grid-column-gap: 1rem;
 }
 
