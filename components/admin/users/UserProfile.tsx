@@ -1,29 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import Loading from "../../UI/Loading";
 
 type Props = {};
+type User = {
+    name: string;
+    empCode: string;
+    emailId: string;
+    role: string;
+};
 
 const UserProfile = (props: Props) => {
-    return (
-        <Card sx={{ minWidth: 275, maxHeight: "98%" }}>
-            <CardContent>
+    const [userProfile, setUserProfile] = useState<User | undefined>();
+    useEffect(() => {
+        fetch("/api/auth/admin/get-user-profile")
+            .then((response) => response.json())
+            .then((data: User) => setUserProfile(data));
+    }, []);
+
+    let cardContent;
+
+    if (userProfile === undefined) {
+        cardContent = <Loading />;
+    } else {
+        cardContent = (
+            <>
                 <Typography
-                    sx={{ fontSize: 14 }}
+                    sx={{ fontSize: "1rem" }}
                     color="text.secondary"
                     gutterBottom
                 >
-                    Signed In as
+                    Signed In as <br /> {userProfile.name} (
+                    {userProfile.empCode})
                 </Typography>
                 <Typography variant="h5" component="div"></Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    User
+                <Typography sx={{ mb: 0.8 }} color="text.secondary">
+                    {userProfile.emailId}
                 </Typography>
-                <Typography variant="body2">Role</Typography>
-            </CardContent>
-            <CardActions></CardActions>
+                <Typography variant="body2">
+                    <span style={{ textTransform: "capitalize" }}>
+                        {userProfile.role}
+                    </span>
+                </Typography>
+            </>
+        );
+    }
+
+    return (
+        <Card sx={{ minWidth: 275, maxHeight: "98%" }}>
+            <CardContent>{cardContent}</CardContent>
         </Card>
     );
 };
