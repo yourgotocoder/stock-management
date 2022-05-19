@@ -10,7 +10,7 @@ const Home: NextPage = () => {
     const router = useRouter();
 
     if (status === "loading") {
-        return <Loading></Loading>;
+        return <Loading type="first-load"></Loading>;
     }
 
     if (status === "authenticated" && session && session.user) {

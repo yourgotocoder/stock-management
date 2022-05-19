@@ -23,7 +23,7 @@ const UserProfile = (props: Props) => {
     let cardContent;
 
     if (userProfile === undefined) {
-        cardContent = <Loading />;
+        cardContent = <Loading type="profile-card" />;
     } else {
         cardContent = (
             <>
