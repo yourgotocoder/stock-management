@@ -7,6 +7,7 @@ import connectToDatabase from "../../lib/database";
 import Navbar from "../../components/Navbar";
 import AdminHome from "../../components/admin/AdminHome";
 import Loading from "../../components/UI/Loading";
+import { AdminContextProvider } from "../../store/admin-context";
 
 interface AdminProps {
     name: string;
@@ -27,7 +28,11 @@ const AdminPage: NextPage<AdminProps> = (props) => {
         router.replace("/signin");
     }
 
-    return <AdminHome />;
+    return (
+        <AdminContextProvider>
+            <AdminHome />
+        </AdminContextProvider>
+    );
 };
 
 export default AdminPage;

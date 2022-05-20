@@ -32,7 +32,7 @@ const UserProfile = (props: Props) => {
                     color="text.secondary"
                     gutterBottom
                 >
-                    Signed In as <br /> {userProfile.name} (
+                    Signed-in as <br /> {userProfile.name} (
                     {userProfile.empCode})
                 </Typography>
                 <Typography variant="h5" component="div"></Typography>
